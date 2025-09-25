@@ -7,6 +7,12 @@ import { typography } from "./typography";
 // Module augmentation to extend MUI's types
 declare module '@mui/material/styles' {
   // Extend Palette to include custom properties
+
+
+  interface PaletteColor {
+    contrast: string; // Add contrast to PaletteColor
+  }
+  
   interface Palette {
     navy: Palette['primary']; // Matches structure of primary, secondary, etc.
     border: {
