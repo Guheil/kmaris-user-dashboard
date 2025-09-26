@@ -9,9 +9,29 @@ import { QuickActionsSection } from "@/components/QuickActionsSection/QuickActio
 import { RecentApplicationsSection } from "@/components/RecentApplicationsSection/RecentApplicationsSection";
 import { ImmigrationServicesSection } from "@/components/ImmigrationServicesSection/ImmigrationServicesSection";
 import { UpdatesSection } from "@/components/UpdatesSection/UpdatesSection";
-import { DashboardProps, DashboardStats, QuickAction, Application } from "./interface";
+import {
+  DashboardProps,
+  DashboardStats,
+  QuickAction,
+  Application,
+} from "./interface";
+import { navSections } from "@/config/navItems";
 import { DashboardRoot, MainContent, DashboardContainer } from "./elements";
-import { Home, ClipboardList, Clock, CheckCircle, XCircle, FileText, FileSignature, BarChart3, History, PlusCircle, Calendar, Download, MessageCircle } from "lucide-react";
+import {
+  Home,
+  ClipboardList,
+  Clock,
+  CheckCircle,
+  XCircle,
+  FileText,
+  FileSignature,
+  BarChart3,
+  History,
+  PlusCircle,
+  Calendar,
+  Download,
+  MessageCircle,
+} from "lucide-react";
 
 export const UserDashboard: FC<DashboardProps> = ({
   sidebarOpen,
@@ -85,7 +105,7 @@ export const UserDashboard: FC<DashboardProps> = ({
       progress: 45,
     },
     {
-      id: "APP-2024-002", 
+      id: "APP-2024-002",
       title: "N-400 Application for Naturalization",
       type: "Citizenship",
       status: "approved",
@@ -127,74 +147,7 @@ export const UserDashboard: FC<DashboardProps> = ({
       <Sidebar
         isOpen={sidebarOpen}
         onToggle={onSidebarToggle}
-        navSections={[
-          {
-            title: "Overview",
-            items: [
-              {
-                icon: <Home size={20} />,
-                text: "Dashboard",
-                href: "/user-dashboard",
-                active: true,
-              },
-            ],
-          },
-          {
-            title: "My Applications",
-            items: [
-              {
-                icon: <ClipboardList size={20} />,
-                text: "All Requests",
-                href: "/user-dashboard/requests",
-              },
-              // {
-              //   icon: <Clock size={20} />,
-              //   text: "Pending Requests",
-              //   href: "/user-dashboard/pending",
-              // },
-              // {
-              //   icon: <CheckCircle size={20} />,
-              //   text: "Approved Requests",
-              //   href: "/user-dashboard/approved",
-              // },
-              // {
-              //   icon: <XCircle size={20} />,
-              //   text: "Rejected Requests",
-              //   href: "/user-dashboard/rejected",
-              // },
-            ],
-          },
-          {
-            title: "Services",
-            items: [
-              {
-                icon: <FileText size={20} />,
-                text: "Available Services",
-                href: "/user-dashboard/services",
-              },
-              // {
-              //   icon: <FileSignature size={20} />,
-              //   text: "Application Forms",
-              //   href: "/user-dashboard/forms",
-              // },
-            ],
-          },
-          {
-            title: "Reports & History",
-            items: [
-              {
-                icon: <BarChart3 size={20} />,
-                text: "My Reports",
-                href: "/user-dashboard/reports",
-              },
-              {
-                icon: <History size={20} />,
-                text: "Activity History",
-                href: "/user-dashboard/history",
-              },
-            ],
-          },
-        ]}
+        navSections={navSections}
         userName="John Doe"
         userRole="Client"
         userInitials="JD"
@@ -213,7 +166,9 @@ export const UserDashboard: FC<DashboardProps> = ({
         isMobile={isMobile}
         onSearch={handleSearch}
         notificationsList={[]}
-        onNotificationClick={(notification) => console.log("Notification clicked:", notification)}
+        onNotificationClick={(notification) =>
+          console.log("Notification clicked:", notification)
+        }
         onMarkAllAsRead={() => console.log("Mark all as read")}
         onLogout={handleLogout}
       />
@@ -222,7 +177,9 @@ export const UserDashboard: FC<DashboardProps> = ({
         <DashboardContainer>
           <WelcomeSection
             userName="John"
-            onNewApplicationClick={() => handleQuickActionClick('new-application')}
+            onNewApplicationClick={() =>
+              handleQuickActionClick("new-application")
+            }
           />
           <StatsSection stats={dashboardStats} />
           <QuickActionsSection

@@ -59,7 +59,7 @@ export const UpdateIconWrapper = styled(Box)(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
   backgroundColor: theme.palette.primary.light,
-  color: theme.palette.primary.main,
+  color: theme.palette.common.white,
   flexShrink: 0,
   marginRight: "16px",
 }));
