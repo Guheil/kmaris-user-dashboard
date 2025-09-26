@@ -147,21 +147,21 @@ export const UserDashboard: FC<DashboardProps> = ({
                 text: "All Requests",
                 href: "/user-dashboard/requests",
               },
-              {
-                icon: <Clock size={20} />,
-                text: "Pending Requests",
-                href: "/user-dashboard/pending",
-              },
-              {
-                icon: <CheckCircle size={20} />,
-                text: "Approved Requests",
-                href: "/user-dashboard/approved",
-              },
-              {
-                icon: <XCircle size={20} />,
-                text: "Rejected Requests",
-                href: "/user-dashboard/rejected",
-              },
+              // {
+              //   icon: <Clock size={20} />,
+              //   text: "Pending Requests",
+              //   href: "/user-dashboard/pending",
+              // },
+              // {
+              //   icon: <CheckCircle size={20} />,
+              //   text: "Approved Requests",
+              //   href: "/user-dashboard/approved",
+              // },
+              // {
+              //   icon: <XCircle size={20} />,
+              //   text: "Rejected Requests",
+              //   href: "/user-dashboard/rejected",
+              // },
             ],
           },
           {
@@ -172,11 +172,11 @@ export const UserDashboard: FC<DashboardProps> = ({
                 text: "Available Services",
                 href: "/user-dashboard/services",
               },
-              {
-                icon: <FileSignature size={20} />,
-                text: "Application Forms",
-                href: "/user-dashboard/forms",
-              },
+              // {
+              //   icon: <FileSignature size={20} />,
+              //   text: "Application Forms",
+              //   href: "/user-dashboard/forms",
+              // },
             ],
           },
           {
