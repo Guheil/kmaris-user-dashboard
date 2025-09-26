@@ -1,10 +1,8 @@
-// src/components/Steps/interface.ts
-
 export interface FormData {
   service?: string;
   adjustment_type?: string;
   vawa_party?: string;
-  party_count: number; // Must always be a number
+  party_count: number;
   full_name?: string;
   email?: string;
   phone?: string;
@@ -27,5 +25,8 @@ export interface ServiceOption {
 export interface StepperProps {
   currentStep: number;
   flow: number[];
-  // totalSteps has been removed as it is redundant
+}
+
+export interface StepperDotProps {
+  $active?: boolean; 
 }

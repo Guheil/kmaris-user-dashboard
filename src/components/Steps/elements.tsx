@@ -1,7 +1,7 @@
 "use client";
 
 import { styled } from "@mui/material/styles";
-import { palette } from "@/theme/palette"; // Assumes this path is correct
+import { palette } from "@/theme/palette";
 import Image from "next/image";
 import {
   Box,
@@ -13,18 +13,20 @@ import {
   Checkbox,
   Select,
 } from "@mui/material";
+import { StepperDotProps } from "./interface"; // Import StepperDotProps
+
+// --- Main Layout (From Login) ---
 
 export const PageWrapper = styled("div")({
   minHeight: "100vh",
   width: "100%",
   display: "flex",
   background: "linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)",
-  fontFamily:
-    "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   padding: "2rem",
   alignItems: "center",
   justifyContent: "center",
 });
+
 export const PasswordContainer = styled(Box)({
   position: "relative",
 });
@@ -45,11 +47,11 @@ export const PasswordToggle = styled("button")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-
   "&:hover": {
     backgroundColor: "rgba(0, 0, 0, 0.04)",
   },
 }));
+
 export const Container = styled("div")(({ theme }) => ({
   width: "100%",
   display: "flex",
@@ -61,7 +63,7 @@ export const Container = styled("div")(({ theme }) => ({
   overflow: "hidden",
   backgroundColor: theme.palette.common.white,
 
-  [theme.breakpoints.up("md")]: {
+  [theme.breakpoints.up('md')]: {
     flexDirection: "row",
     height: "700px",
     maxHeight: "90vh",
@@ -115,20 +117,20 @@ export const Content = styled("div")({
 });
 
 export const PanelTitle = styled("h2")(({ theme }) => ({
-  fontSize: "36px", // Increased for better prominence
+  fontSize: "36px",
   fontWeight: 700,
   textAlign: "left",
-  marginBottom: "24px", // Slightly more spacing
-  letterSpacing: "-0.015em", // Slightly looser for readability
-  lineHeight: 1.3, // Improved readability
+  marginBottom: "24px",
+  letterSpacing: "-0.015em",
+  lineHeight: 1.3,
   fontFamily: theme.typography.fontFamily,
 }));
 
 export const PanelText = styled("p")(({ theme }) => ({
-  fontSize: "16px", // Increased for readability
-  lineHeight: 1.7, // More breathing room
-  marginBottom: "48px", // Increased spacing
-  opacity: 0.9, // Slightly less opacity for subtlety
+  fontSize: "16px",
+  lineHeight: 1.7,
+  marginBottom: "48px",
+  opacity: 0.9,
   fontFamily: theme.typography.fontFamily,
 }));
 
@@ -136,15 +138,13 @@ export const PanelText = styled("p")(({ theme }) => ({
 
 export const FormRoot = styled("div")(({ theme }) => ({
   width: "100%",
-  padding: "48px 32px", // Increased padding for comfort
+  padding: "48px 32px",
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-start",
   backgroundColor: theme.palette.common.white,
   position: "relative",
   overflowY: "auto",
-
-  // Custom Scrollbar
   "&::-webkit-scrollbar": {
     width: "8px",
   },
@@ -159,82 +159,78 @@ export const FormRoot = styled("div")(({ theme }) => ({
       background: palette.primary.main,
     },
   },
-  scrollbarWidth: "thin", // For Firefox
-  scrollbarColor: `${theme.palette.navy.main} #f1f5f9`, // For Firefox
-
+  scrollbarWidth: "thin",
+  scrollbarColor: `${theme.palette.navy.main} #f1f5f9`,
   [theme.breakpoints.up("md")]: {
     width: "90%",
-    padding: "48px 56px", // Increased for larger screens
+    padding: "48px 56px",
   },
 }));
 
 export const LogoContainer = styled("div")({
   display: "flex",
   justifyContent: "center",
-  marginBottom: "-8px", // Adjusted for better alignment
+  marginBottom: "-8px",
   cursor: "pointer",
   paddingBottom: "12px",
 });
 
 export const Title = styled("h1")(({ theme }) => ({
-  fontSize: "32px", // Increased for prominence
+  fontSize: "32px",
   fontWeight: 700,
   color: palette.text.dark,
   textAlign: "center",
-  marginBottom: "8px", // Slightly increased
-  marginTop: "24px", // Adjusted for spacing
-  letterSpacing: "-0.015em", // Improved readability
-  lineHeight: 1.3, // Better text flow
+  marginBottom: "8px",
+  marginTop: "24px",
+  letterSpacing: "-0.015em",
+  lineHeight: 1.3,
   fontFamily: theme.typography.fontFamily,
 }));
 
 export const Subtitle = styled("p")(({ theme }) => ({
-  fontSize: "16px", // Increased for readability
+  fontSize: "16px",
   color: palette.text.primary,
   textAlign: "center",
-  margin: "0 auto 40px", // Increased bottom margin
+  margin: "0 auto 40px",
   fontWeight: 400,
-  maxWidth: "480px", // Slightly wider for better text flow
-  lineHeight: 1.6, // Improved readability
+  maxWidth: "480px",
+  lineHeight: 1.6,
   fontFamily: theme.typography.fontFamily,
 }));
 
 // Stepper
 export const StepperContainer = styled(Box)(({ theme }) => ({
   display: "flex",
-  gap: theme.spacing(1.5), // Slightly larger gap
-  marginBottom: theme.spacing(5), // Increased for spacing
+  gap: theme.spacing(1.5),
+  marginBottom: theme.spacing(5),
 }));
 
-interface StepperDotProps {
-  $active?: boolean;
-}
-export const StepperDot = styled(Box)<StepperDotProps>(
-  ({ theme, $active }) => ({
-    flex: 1,
-    height: "8px", // Slightly thicker for visibility
-    backgroundColor: "#e2e8f0",
-    borderRadius: "999px",
-    transition: "background-color 0.4s ease",
-    ...($active && {
-      backgroundColor: palette.primary.main,
-    }),
-  })
-);
+export const StepperDot = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "$active", // Prevent $active from forwarding to DOM
+})<StepperDotProps>(({ theme, $active }) => ({
+  flex: 1,
+  height: "8px",
+  backgroundColor: "#e2e8f0",
+  borderRadius: "999px",
+  transition: "background-color 0.4s ease",
+  ...($active && {
+    backgroundColor: palette.primary.main,
+  }),
+}));
 
 // Form Elements
 export const StepContainer = styled(Box)({ display: "block" });
 export const StepTitle = styled(Typography)({
-  fontSize: "24px", // Increased for hierarchy
+  fontSize: "24px",
   fontWeight: 700,
-  marginBottom: "28px", // More spacing
+  marginBottom: "28px",
   color: palette.text.dark,
-  lineHeight: 1.4, // Improved readability
+  lineHeight: 1.4,
 });
 
 export const GridContainer = styled(Box)(({ theme }) => ({
   display: "grid",
-  gap: theme.spacing(3), // Increased gap for clarity
+  gap: theme.spacing(3),
   gridTemplateColumns: "1fr",
   [theme.breakpoints.up("sm")]: {
     gridTemplateColumns: "repeat(2, 1fr)",
@@ -242,12 +238,12 @@ export const GridContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const Label = styled("label")(({ theme }) => ({
-  fontSize: "15px", // Slightly larger for clarity
+  fontSize: "15px",
   fontWeight: 600,
   color: palette.primary.main,
-  letterSpacing: "0.02em", // Adjusted for readability
+  letterSpacing: "0.02em",
   display: "block",
-  marginBottom: "10px", // Increased for spacing
+  marginBottom: "10px",
   fontFamily: theme.typography.fontFamily,
 }));
 
@@ -256,7 +252,7 @@ export const StyledTextField = styled(TextField)(({ theme }) => ({
   "& .MuiOutlinedInput-root": {
     borderRadius: "12px",
     backgroundColor: "#fafafa",
-    "& input": { padding: "16px", fontSize: "16px" }, // Larger font
+    "& input": { padding: "16px", fontSize: "16px" },
     "& fieldset": { border: `1px solid ${theme.palette.divider}` },
     "&:hover fieldset": { borderColor: theme.palette.primary.main },
     "&.Mui-focused fieldset": {
@@ -270,7 +266,7 @@ export const StyledSelect = styled(Select)(({ theme }) => ({
   width: "100%",
   borderRadius: "12px",
   backgroundColor: "#fafafa",
-  "& .MuiSelect-select": { padding: "16px", fontSize: "16px" }, // Larger font
+  "& .MuiSelect-select": { padding: "16px", fontSize: "16px" },
   "& .MuiOutlinedInput-notchedOutline": {
     border: `1px solid ${theme.palette.divider}`,
   },
@@ -286,24 +282,24 @@ export const StyledSelect = styled(Select)(({ theme }) => ({
 export const OptionsContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexWrap: "wrap",
-  gap: theme.spacing(2), // Increased gap
+  gap: theme.spacing(2),
   marginTop: theme.spacing(1.5),
 }));
 
 export const ChipOption = styled(FormControlLabel)(({ theme }) => ({
   margin: 0,
   "& .MuiFormControlLabel-label": {
-    fontSize: "15px", // Slightly larger
+    fontSize: "15px",
     fontWeight: 500,
-    padding: "0 10px 0 6px", // Adjusted padding
+    padding: "0 10px 0 6px",
     color: palette.text.dark,
-    lineHeight: 1.5, // Better readability
+    lineHeight: 1.5,
     fontFamily: theme.typography.fontFamily,
   },
   "& .MuiButtonBase-root": {
     border: `1px solid ${theme.palette.divider}`,
-    padding: "12px 16px", // Slightly larger
-    borderRadius: "10px", // Softer corners
+    padding: "12px 16px",
+    borderRadius: "10px",
     transition: "all 0.2s ease",
     "&:hover": {
       borderColor: palette.primary.light,
@@ -316,21 +312,21 @@ export const ChipOption = styled(FormControlLabel)(({ theme }) => ({
   },
   "& .MuiRadio-root, & .MuiCheckbox-root": {
     padding: 0,
-    marginRight: theme.spacing(1.5), // Slightly more spacing
+    marginRight: theme.spacing(1.5),
   },
 }));
 
 export const ActionsContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
-  marginTop: theme.spacing(5), // Increased for separation
-  paddingTop: theme.spacing(4), // Increased for visual hierarchy
+  marginTop: theme.spacing(5),
+  paddingTop: theme.spacing(4),
   borderTop: `1px solid ${theme.palette.divider}`,
 }));
 
 export const PrimaryButton = styled(Button)({
-  padding: "16px 28px", // Larger for better clickability
-  fontSize: "16px", // Larger font
+  padding: "16px 28px",
+  fontSize: "16px",
   fontWeight: 600,
   color: palette.common.white,
   backgroundColor: palette.primary.main,
@@ -346,8 +342,8 @@ export const PrimaryButton = styled(Button)({
 });
 
 export const SecondaryButton = styled(Button)(({ theme }) => ({
-  padding: "16px 28px", // Larger for consistency
-  fontSize: "16px", // Larger font
+  padding: "16px 28px",
+  fontSize: "16px",
   fontWeight: 600,
   color: palette.text.dark,
   backgroundColor: "rgba(0, 37, 66, 0.04)",
@@ -366,21 +362,21 @@ export const SummaryContainer = styled(Box)(({ theme }) => ({
   background: "rgba(0, 37, 66, 0.04)",
   borderLeft: `4px solid ${palette.primary.main}`,
   borderRadius: "8px",
-  padding: theme.spacing(4), // Increased padding
-  marginBottom: theme.spacing(3), // More spacing
+  padding: theme.spacing(4),
+  marginBottom: theme.spacing(3),
 }));
 
 export const SummaryItem = styled(Box)(({ theme }) => ({
-  marginBottom: theme.spacing(2), // Increased spacing
-  fontSize: "16px", // Larger for readability
-  lineHeight: 1.6, // Better text flow
+  marginBottom: theme.spacing(2),
+  fontSize: "16px",
+  lineHeight: 1.6,
   color: theme.palette.navy.main,
   "&:last-child": { marginBottom: 0 },
   "& strong": {
     fontWeight: 600,
     color: palette.text.dark,
     display: "block",
-    marginBottom: "6px", // Slightly more spacing
+    marginBottom: "6px",
   },
 }));
 
@@ -388,28 +384,28 @@ export const ErrorBanner = styled(Box)(({ theme }) => ({
   background: "#fff5f5",
   border: `1px solid ${theme.palette.error.main}`,
   color: theme.palette.error.dark,
-  padding: "14px 18px", // Slightly larger
+  padding: "14px 18px",
   borderRadius: "10px",
-  margin: "0 0 28px 0", // More bottom margin
-  fontSize: "15px", // Larger for clarity
-  lineHeight: 1.5, // Better readability
+  margin: "0 0 28px 0",
+  fontSize: "15px",
+  lineHeight: 1.5,
 }));
 
 export const HintText = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
-  fontSize: "14px", // Slightly larger
-  marginTop: theme.spacing(1), // More spacing
-  lineHeight: 1.6, // Improved readability
+  fontSize: "14px",
+  marginTop: theme.spacing(1),
+  lineHeight: 1.6,
 }));
 
 export const GroupTitle = styled(Typography)(({ theme }) => ({
-  fontSize: "15px", // Slightly larger
+  fontSize: "15px",
   fontWeight: theme.typography.fontWeightBold,
   color: theme.palette.text.primary,
   textTransform: "uppercase",
-  letterSpacing: "0.06em", // Adjusted for clarity
-  margin: "28px 0 12px 0", // More top margin
-  lineHeight: 1.5, // Better readability
+  letterSpacing: "0.06em",
+  margin: "28px 0 12px 0",
+  lineHeight: 1.5,
   "&:first-of-type": { marginTop: 0 },
 }));
 
@@ -422,7 +418,6 @@ export const TermsLink = styled("button")(({ theme }) => ({
   fontSize: "inherit",
   fontFamily: theme.typography.fontFamily,
   padding: 0,
-
   "&:hover": {
     color: palette.primary.dark,
   },

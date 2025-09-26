@@ -1,13 +1,8 @@
-// --- START OF FILE: [steps]/Stepper.tsx ---
 "use client";
 
 import React from "react";
 import { StepperContainer, StepperDot } from "./elements";
-
-interface StepperProps {
-  currentStep: number;
-  flow: number[];
-}
+import { StepperProps } from "./interface";
 
 export function Stepper({ currentStep, flow }: StepperProps) {
   return (
@@ -15,7 +10,7 @@ export function Stepper({ currentStep, flow }: StepperProps) {
       {flow.map((_, index) => (
         <StepperDot
           key={index}
-          $active={index <= currentStep}
+          $active={index <= currentStep} 
         />
       ))}
     </StepperContainer>
